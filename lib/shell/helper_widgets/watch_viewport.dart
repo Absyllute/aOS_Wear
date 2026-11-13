@@ -39,12 +39,9 @@ class WatchViewport extends StatelessWidget {
   final Widget child;
 
   // 400x400 Design Baseline
-  static const double designBaseline = 400.0;
+  static const double screenSizeBaseline = 400.0;
 
-  const WatchViewport({
-    super.key,
-    required this.child,
-  });
+  const WatchViewport({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +53,7 @@ class WatchViewport extends StatelessWidget {
             : constraints.maxHeight;
 
         // Calculate the fluid scale factor against the 400x400 baseline
-        double scaleFactor = size / designBaseline;
+        double scaleFactor = size / screenSizeBaseline;
 
         return Center(
           child: SizedBox(
@@ -67,7 +64,8 @@ class WatchViewport extends StatelessWidget {
               child: WatchScaleScope(
                 scaleFactor: scaleFactor,
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(size * 0.08), // Dynamic rounded corners (~32px at 400px baseline)
+                  // Dynamic rounded corners (~32px at 400px baseline)
+                  borderRadius: .circular(size * 0.08),
                   child: Container(
                     color: const Color(0xFF0F172A), // Default surface background
                     child: child,
